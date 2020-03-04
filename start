@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ -z ${GANDI_API_KEY+x} ]; then echo "Environment variable GANDI_API_KEY not set."; exit; fi
+if [ -z ${GANDI_DOMAIN+x} ]; then echo "Environment variable GANDI_DOMAIN not set."; exit; fi
+if [ -z ${SSL_HOST+x} ]; then echo "Environment variable SSL_HOST not set."; exit; fi
+if [ -z ${SSL_HOST} ]
+then
+  /dehydrated/dehydrated -c -t dns-01 -d ${GANDI_DOMAIN} -k ./dehydrated/hooks/manual/manual_hook.rb;
+else
+  /dehydrated/dehydrated -c -t dns-01 -d ${SSL_HOST}.${GANDI_DOMAIN} -k ./dehydrated/hooks/manual/manual_hook.rb;
+fi
+
