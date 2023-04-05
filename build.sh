@@ -1,1 +1,1 @@
-docker build -t letsencryptgandi .
+docker build -t letsencryptgandi:0.2 .
